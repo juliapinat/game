@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cutscene - Mistério da Casa</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="cutscene-container">
+        <div class="background"></div>
+        <div class="text-box">
+            <p id="narrative-text">Você acorda em uma casa que não reconhece. As luzes falham...</p>
+        </div>
+        <div class="interaction-box">
+            <button id="next-btn">Avançar</button>
+        </div>
+    </div>
+    <script src="script.js">
+        const nextButton = document.getElementById('next-btn');
+const narrativeText = document.getElementById('narrative-text');
+
+const texts = [
+    "Você acorda em uma casa que não reconhece. As luzes falham...",
+    "Você percebe que está sozinho... ou talvez não. Um frio percorre sua espinha.",
+    "Cada cômodo tem vestígios de uma presença passada — cartas rasgadas, desenhos infantis, objetos quebrados.",
+    "Você explora mais e mais, até que algo começa a surgir. Revelações perturbadoras.",
+    "A verdade sobre quem viveu ali e por que você está preso começa a se revelar...",
+    "Você encontra uma carta final... com seu nome nela. O que aconteceu com você?"
+];
+
+let currentTextIndex = 0;
+
+function updateNarrative() {
+    if (currentTextIndex < texts.length) {
+        narrativeText.textContent = texts[currentTextIndex];
+        currentTextIndex++;
+    } else {
+        // Fim da cutscene - o que acontece depois?
+        narrativeText.textContent = "A cena terminou. Pressione F5 para reiniciar.";
+        nextButton.disabled = true; // Desabilitar o botão.
+    }
+}
+
+nextButton.addEventListener('click', updateNarrative);
+
+// Iniciar a cutscene
+updateNarrative();
+
+    </script>
+</body>
+</html>

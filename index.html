@@ -8,7 +8,7 @@
     :root{
       --bg:#0b0b0c;         /* fundo geral */
       --panel:#0f0f12;      /* painéis */
-      --wall:#27282c;       /* paredes */
+      --wall:#222325;       /* paredes */
       --floor:#0c0c0f;      /* chão */
       --exit:rgb(255, 0, 0);          /* saída */
       --player:rgb(70, 51, 238);        /* jogador */
@@ -32,7 +32,7 @@
     .panel{background:var(--panel);border:1px solid #1a1a20;border-radius:18px;padding:28px 22px;max-width:min(92vw,560px);box-shadow:0 14px 40px rgba(0,0,0,.55)}
     h1{margin:0 0 8px;font-size:clamp(26px,4vw,40px)}
     p{margin:0 0 14px;opacity:.9;line-height:1.4}
-    .btn{cursor:pointer;appearance:none;border:0;border-radius:14px;padding:14px 18px;font-weight:700;background:linear-gradient(180deg,#a32222,#7a1414);color:#fff;box-shadow:0 10px 20px rgba(0,0,0,.5), inset 0 -2px 0 rgba(255,255,255,.06)}
+    .btn{cursor:pointer;appearance:none;border:0;border-radius:14px;padding:14px 18px;font-weight:700;background:linear-gradient(180deg,#a32222,#7a1414);color:#a0a0a0;box-shadow:0 10px 20px rgba(0,0,0,.5), inset 0 -2px 0 rgba(255,255,255,.06)}
     .btn:hover{filter:brightness(1.05)}
     .btn:active{transform:translateY(1px)}
 
@@ -293,7 +293,7 @@
         [1,1,0,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,0,1],
         [1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1],
         [1,0,1,1,1,0,1,1,1,0,1,1,0,1,1,1,0,1,1,1],
-        [1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,1],
+        [1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1],
         [1,0,1,0,1,1,1,0,1,1,1,0,1,0,1,1,1,0,1,1],
         [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
         [1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],

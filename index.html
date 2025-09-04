@@ -104,12 +104,54 @@
     </main>
   </div>
 
-  <!-- Joystick Mobile -->
-<div id="joystick" class="joystick">
-  <div id="stick" class="stick"></div>
-</div>
+const joystick = document.getElementById("joystick");
+const stick = document.getElementById("stick");
+const toast = document.getElementById("toast");
 
-<div class="toast" id="toast" style="display:none"></div>
+let centerX = joystick.offsetLeft + joystick.offsetWidth / 2;
+let centerY = joystick.offsetTop + joystick.offsetHeight / 2;
+
+joystick.addEventListener("touchmove", (e) => {
+  e.preventDefault();
+  const touch = e.touches[0];
+  const dx = touch.clientX - centerX;
+  const dy = touch.clientY - centerY;
+
+  // Limita o movimento do stick dentro do joystick
+  const distance = Math.min(Math.sqrt(dx * dx + dy * dy), 40);
+  const angle = Math.atan2(dy, dx);
+  const x = Math.cos(angle) * distance;
+  const y = Math.sin(angle) * distance;
+
+  stick.style.left = `${40 + x}px`;
+  stick.style.top = `${40 + y}px`;
+
+  // Detecta direção
+  let direction = "";
+  if (Math.abs(dx) > Math.abs(dy)) {
+    direction = dx > 10 ? "direita" : dx < -10 ? "esquerda" : "";
+  } else {
+    direction = dy > 10 ? "baixo" : dy < -10 ? "cima" : "";
+  }
+
+  if (direction) {
+    showToast(`Movendo para ${direction}`);
+    // Aqui você pode chamar funções específicas, ex: movePlayer(direction)
+  }
+});
+
+joystick.addEventListener("touchend", () => {
+  stick.style.left = "40px";
+  stick.style.top = "40px";
+});
+
+function showToast(msg) {
+  toast.innerText = msg;
+  toast.style.display = "block";
+  setTimeout(() => {
+    toast.style.display = "none";
+  }, 1000);
+}
 
   <script>
     // --- Representação das fases ---

@@ -104,95 +104,12 @@
     </main>
   </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const joystick = document.getElementById('joystick');
-    const stick = document.getElementById('stick');
-    const player = document.getElementById('player');
+  <!-- Joystick Mobile -->
+<div id="joystick" class="joystick">
+  <div id="stick" class="stick"></div>
+</div>
 
-    const maxDistance = 45;
-    let dragging = false;
-
-    let velocityX = 0;
-    let velocityY = 0;
-
-    let playerX = 100;
-    let playerY = 100;
-
-    joystick.addEventListener('pointerdown', (e) => {
-      dragging = true;
-      moveStick(e);
-    });
-
-    window.addEventListener('pointermove', (e) => {
-      if (dragging) {
-        moveStick(e);
-      }
-    });
-
-    window.addEventListener('pointerup', () => {
-      dragging = false;
-      resetStick();
-    });
-
-    function moveStick(e) {
-      const rect = joystick.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-
-      let deltaX = e.clientX - centerX;
-      let deltaY = e.clientY - centerY;
-
-      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-      if (distance > maxDistance) {
-        const angle = Math.atan2(deltaY, deltaX);
-        deltaX = Math.cos(angle) * maxDistance;
-        deltaY = Math.sin(angle) * maxDistance;
-      }
-
-      // Atualiza posição visual do stick
-      stick.style.left = `${50 + deltaX}px`;
-      stick.style.top = `${50 + deltaY}px`;
-
-      // Define velocidade de movimento proporcional
-      velocityX = deltaX / maxDistance;
-      velocityY = deltaY / maxDistance;
-    }
-
-    function resetStick() {
-      stick.style.left = '50%';
-      stick.style.top = '50%';
-      stick.style.transform = 'translate(-50%, -50%)';
-
-      velocityX = 0;
-      velocityY = 0;
-    }
-
-    function update() {
-      const speed = 5;
-
-      playerX += velocityX * speed;
-      playerY += velocityY * speed;
-
-      const maxX = window.innerWidth - player.offsetWidth;
-      const maxY = window.innerHeight - player.offsetHeight;
-
-      // Limites da tela
-      playerX = Math.max(0, Math.min(maxX, playerX));
-      playerY = Math.max(0, Math.min(maxY, playerY));
-
-      player.style.left = `${playerX}px`;
-      player.style.top = `${playerY}px`;
-
-      requestAnimationFrame(update);
-    }
-
-    // Inicia animação contínua
-    update();
-  });
-</script>
-
+<div class="toast" id="toast" style="display:none"></div>
 
   <script>
     // --- Representação das fases ---
